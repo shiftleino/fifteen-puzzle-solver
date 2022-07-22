@@ -10,4 +10,4 @@
 
 - What are the next steps?
 
-Approx. number of hours used: x
+Approx. number of hours used: 15h
