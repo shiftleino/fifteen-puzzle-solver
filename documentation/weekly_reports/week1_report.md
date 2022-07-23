@@ -1,13 +1,9 @@
 # Project Report - Week 1
 
-- What have you done this week?
+This week I have chosen the problem I am going to work on, the fifteen puzzle. It took some time to understand the logic in the game and I used some helpful videos for example to understand when the puzzle is not solvable. After that I have studied the recommended algorithm to solve this problem, the Iterative Deepening A* (IDA*). The algorithm was not familiar to me and it took some time to understand the intuition behind it and then how the implementation (pseudocode, data structures) should be done. Finally, I have created this Github-page for the project and begun adding some folder structure and Python libraries into the repository.To summarize, I have learned the logic behind the 15 Puzzle, and the intuition and implementation of IDA* algorithm.
 
-- How has the project progressed? 
+The things that were problematic during this week were mainly the topic choice and the concept of how I can use the IDA* algorithm to solve the puzzle. As there were quite a few topics to choose from I had hard time to decide which topic would be most suitable for my tight summer schedule and programming background. As the 15 Puzzle seemed to be relatively straightforward but still challenging, I decided to choose it as the project topic. Some Youtube-videos were extremely helpful to understand the idea behind the IDA* algorithm and after many hours I finally understood how it uses and combines the ideas behind the iterative deepening depth-first-search and the A*-algorithm. It was however quite surprising to see how little material one could find about the IDA* from the Internet.
 
-- What did you learn this week?
+Next I will start to implement the main logic behind the solver and test how the algorithm works as code. I have to also decide what class- and function-structure I will be using in the code. I will leave the UI for later when I have figured out the technical stuff behind it.
 
-- What has been unclear or problematic?
-
-- What are the next steps?
-
-Approx. number of hours used: 15h
+Approx. number of hours used: 17h
