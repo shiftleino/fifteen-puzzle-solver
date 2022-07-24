@@ -1,5 +1,8 @@
+from ui.console import ConsoleUI
+
 def main():
-    print("Hello World")
+    ui = ConsoleUI()
+    ui.create_start_menu()
 
 if __name__ == "__main__":
     main()
