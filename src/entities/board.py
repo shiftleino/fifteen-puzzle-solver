@@ -19,4 +19,3 @@ class Board:
             [][]int: The current tile values of the board.
         """
         return self.tile_values
-        
