@@ -26,8 +26,8 @@ class Game:
         """Sets the tile values of the starting board using Random Number Generation.
         """
         solvable = False
-        used_values = []
         while not solvable:
+            used_values = []
             new_tile_values = []
             for _ in range(4):
                 row_values = []
@@ -71,7 +71,7 @@ class Game:
         Returns:
             Boolean: If the current board is the solution: True or False.
         """
-        if self.board.get_board == self.correct_solution:
+        if self.board.get_board() == self.correct_solution:
             return True
         return False
 
