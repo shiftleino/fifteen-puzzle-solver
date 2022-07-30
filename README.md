@@ -6,6 +6,7 @@ This repository contains the algorithm project for the course Data Structures La
 
 ### Weekly Reports
 [Week 1 Report](./documentation/weekly_reports/week1_report.md)
+[Week 2 Report](./documentation/weekly_reports/week2_report.md)
 
 ## Commands
 To run the program, use the following command when in root of the repository:
