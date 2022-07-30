@@ -27,6 +27,7 @@ The program does not use any inputs provided by the user as the only functionali
 - https://cseweb.ucsd.edu//~ccalabro/essays/15_puzzle.pdf
 - https://en.wikipedia.org/wiki/Parity_of_a_permutation
 - https://www.sfu.ca/~mdevos/notes/geom-sym/14_transpositions.pdf
+- https://sites.millersville.edu/bikenaga/abstract-algebra-1/permutations/permutations.pdf
 
 Some videos:
 - [Lecture on IDA*](https://www.youtube.com/watch?v=5LMXQ1NGHwU)
