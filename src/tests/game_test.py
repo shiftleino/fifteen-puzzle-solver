@@ -61,6 +61,15 @@ class TestGame(unittest.TestCase):
         correct = self.game.check_if_correct()
         self.assertEqual(correct, False)
 
+    def test_no_inversions(self):
+        inversions = self.game.get_number_inversions(self.correct)
+        self.assertEqual(inversions, 0)
+
+    def test_number_inversions(self):
+        board_values = [[1, 2, 3, 4], [12, 13, 14, 5], [11, 16, 15, 6], [10, 9, 8, 7]]
+        inversions = self.game.get_number_inversions(board_values)
+        self.assertEqual(inversions, 43)
+
     def test_blank_distance_same(self):
         distance = self.game.get_blank_distance(self.correct)
         self.assertEqual(distance, 0)
