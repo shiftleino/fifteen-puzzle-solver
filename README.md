@@ -5,7 +5,7 @@ This repository contains the algorithm project for the course Data Structures La
 [Project Specification Document](./documentation/project_specification.md)
 
 ### Weekly Reports
-[Week 1 Report](./documentation/weekly_reports/week1_report.md)
+[Week 1 Report](./documentation/weekly_reports/week1_report.md)<br>
 [Week 2 Report](./documentation/weekly_reports/week2_report.md)
 
 ## Commands
