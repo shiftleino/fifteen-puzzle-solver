@@ -55,7 +55,7 @@ class Game:
             Boolean: If the board is solvable: True or False.
         """
         perm_parity = blank_parity = 1
-        num_transpositions = self.get_number_transpositions(board_values)
+        num_transpositions = self.get_number_inversions(board_values)
         if num_transpositions % 2 == 0:
             perm_parity = 2
 
@@ -65,37 +65,21 @@ class Game:
 
         return perm_parity == blank_parity
 
-    def check_if_correct(self):
-        """Check if the current board matches the solution of the puzzle.
-
-        Returns:
-            Boolean: If the current board is the solution: True or False.
-        """
-        if self.board.get_board() == self.correct_solution:
-            return True
-        return False
-
-    def get_number_transpositions(self, board_values):
-        """Finds the number of transpositions it takes to get the solution permutation
-        using simple Bubble sort: (https://en.wikipedia.org/wiki/Bubble_sort).
+    def get_number_inversions(self, board_values):
+        """Finds the number of inversions in the permutation.
 
         Args:
             board_values ([][]int): The tile values of the board as a list of lists of integers.
+
+        Returns:
+            int: The number of inversions.
         """
         count = 0
-        swapped = True
         flattened_values = [value for row in board_values for value in row]
-        i = 0
-        while swapped:
-            swapped = False 
-            for j in range(0, len(flattened_values) - i - 1):
-                if flattened_values[j] > flattened_values[j + 1]:
-                    swapped = True
-                    flattened_values[j], flattened_values[j + 1] = flattened_values[j + 1], flattened_values[j] 
+        for i in range(16):
+            for j in range(i + 1, 16):
+                if flattened_values[i] > flattened_values[j]:
                     count += 1
-            i += 1
-            if not swapped:
-                return count
         return count
 
     def get_blank_distance(self, board_values):
@@ -112,3 +96,13 @@ class Game:
             for j in range(3, -1, -1):
                 if board_values[i][j] == 16:
                     return (3 - i) + (3 - j)
+
+    def check_if_correct(self):
+        """Check if the current board matches the solution of the puzzle.
+
+        Returns:
+            Boolean: If the current board is the solution: True or False.
+        """
+        if self.board.get_board() == self.correct_solution:
+            return True
+        return False
