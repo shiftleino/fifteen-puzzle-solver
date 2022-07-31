@@ -8,3 +8,9 @@ class Solver:
 
     def solve_puzzle(self):
         pass
+
+    def get_manhattan_distance(self):
+        pass
+
+    def get_hamming_distance(self):
+        pass

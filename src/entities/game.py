@@ -9,6 +9,7 @@ class Game:
         self.board = board
         self.correct_solution = [[i + 4*j for i in range(1, 5)] for j in range(4)]
         self.heuristic = ""
+        self.blank_position = (3, 3)
 
     def set_heuristic(self, heuristic):
         """Sets the heuristic the solver will use based on user input.
@@ -106,3 +107,6 @@ class Game:
         if self.board.get_board() == self.correct_solution:
             return True
         return False
+
+    def move_blank(self, dx, dy):
+        pass
