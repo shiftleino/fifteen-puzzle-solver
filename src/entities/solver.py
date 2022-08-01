@@ -4,11 +4,28 @@ class Solver:
     and Hamming-distance.
     """
     def __init__(self, game):
-        self.heuristic = game.heuristic
         self.game = game
+        self.heuristic = self.game.heuristic
+        self.tile_values = self.game.get_board()
+        self.bound = self.get_manhattan_distance(self.tile_values)
+        self.path = []
+
+    def search(self):
+        pass
 
     def solve_puzzle(self):
-        pass
+        """Solves the puzzle using IDA*-algorithm.
+
+        Returns:
+            ([]string, int): Returns the found path and the amount of moves, if found.
+        """
+        while True:
+            result = self.search()
+            if result == 0:
+                return (self.path, self.bound)
+            elif result == -1:
+                return (None, -1)
+            self.bound = result
 
     def get_manhattan_distance(self, tile_values):
         """Calculates the Manhattan-distance of the given board to the correct solution.

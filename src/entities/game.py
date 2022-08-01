@@ -110,3 +110,6 @@ class Game:
 
     def move_blank(self, dx, dy):
         pass
+
+    def get_board(self):
+        return self.board.get_board()
