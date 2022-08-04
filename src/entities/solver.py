@@ -8,10 +8,17 @@ class Solver:
         self.heuristic = self.game.heuristic
         self.tile_values = self.game.get_board()
         self.bound = self.get_manhattan_distance(self.tile_values)
-        self.path = []
+        self.path = [self.tile_values]
+        self.current_cost = 0
+
+    def get_successors(self):
+        pass
 
     def search(self):
-        pass
+        current_board = self.path[-1]
+        total_cost = self.current_cost + self.get_manhattan_distance(current_board)
+        if total_cost > self.bound:
+            return total_cost
 
     def solve_puzzle(self):
         """Solves the puzzle using IDA*-algorithm.
