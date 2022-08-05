@@ -8,6 +8,21 @@ class TestGame(unittest.TestCase):
         self.game = Game(self.board)
         self.correct = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]
 
+    def test_get_board(self):
+        self.board.fill_board(self.correct)
+        result = self.game.get_board()
+        self.assertEqual(result, self.correct)
+
+    def test_get_correct_solution(self):
+        result = self.game.get_correct_solution()
+        self.assertEqual(result, self.correct)
+
+    def test_get_heuristic(self):
+        heuristic = "2"
+        self.game.heuristic = heuristic
+        result = self.game.get_heuristic()
+        self.assertEqual(result, heuristic)
+
     def test_set_heuristic_manhattan(self):
         heuristic = "1"
         self.game.set_heuristic(heuristic)
@@ -49,17 +64,6 @@ class TestGame(unittest.TestCase):
         board_values2 = [[15, 14, 13, 12], [11, 10, 9, 8], [7, 6, 5, 4], [3, 2, 1, 16]]
         solvable2 = self.game.check_if_solvable(board_values2)
         self.assertEqual(solvable2, False)
-
-    def test_check_correct(self):
-        self.board.fill_board(self.correct)
-        correct = self.game.check_if_board_correct()
-        self.assertEqual(correct, True)
-
-    def test_check_not_correct(self):
-        board_values = [[16, 15, 14, 13], [12, 11, 10, 9], [8, 7, 6, 5], [4, 3, 2, 1]]
-        self.board.fill_board(board_values)
-        correct = self.game.check_if_board_correct()
-        self.assertEqual(correct, False)
 
     def test_no_inversions(self):
         inversions = self.game.get_number_inversions(self.correct)
