@@ -11,6 +11,27 @@ class Game:
         self.heuristic = ""
         self.blank_position = (3, 3)
 
+    def get_heuristic(self):
+        """
+        Returns:
+            string: The current heuristic.
+        """
+        return self.heuristic
+
+    def get_correct_solution(self):
+        """
+        Returns:
+            [][]int: The solution board to the puzzle.
+        """
+        return self.correct_solution
+
+    def get_board(self):
+        """
+        Returns:
+            [][]int: The current tile values of the board.
+        """
+        return self.board.get_board()
+
     def set_heuristic(self, heuristic):
         """Sets the heuristic the solver will use based on user input.
         "1" is for Manhattan-distance, "2" is for Hamming-distance.
@@ -40,14 +61,14 @@ class Game:
                     used_values.append(tile_value)
                 new_tile_values.append(row_values)
             solvable = self.check_if_solvable(new_tile_values)
-        
+
         self.board.fill_board(new_tile_values)
 
     def check_if_solvable(self, board_values):
         """Checks if the given board is solvable. Board is solvable if the
         parity of the permutation of all 16 tiles is the same as the parity
         of the taxicab distance of the blank tile from its starting position
-        to the lower right corner. 
+        to the lower right corner.
 
         Args:
             board_values ([][]int): The tile values of the board as a list of lists of integers.
@@ -97,19 +118,3 @@ class Game:
             for j in range(3, -1, -1):
                 if board_values[i][j] == 16:
                     return (3 - i) + (3 - j)
-
-    def check_if_correct(self):
-        """Check if the current board matches the solution of the puzzle.
-
-        Returns:
-            Boolean: If the current board is the solution: True or False.
-        """
-        if self.board.get_board() == self.correct_solution:
-            return True
-        return False
-
-    def move_blank(self, dx, dy):
-        pass
-
-    def get_board(self):
-        return self.board.get_board()
