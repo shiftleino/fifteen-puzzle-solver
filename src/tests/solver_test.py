@@ -55,3 +55,20 @@ class TestSolver(unittest.TestCase):
         board_values = [[1, 2, 3, 4], [12, 13, 14, 5], [11, 16, 15, 6], [10, 9, 8, 7]]
         distance = self.solver.get_manhattan_distance(board_values)
         self.assertEqual(distance, 32)
+
+    def test_check_correct(self):
+        correct = self.solver.check_if_solution(self.correct)
+        self.assertEqual(correct, True)
+
+    def test_check_not_correct(self):
+        board_values = [[16, 15, 14, 13], [12, 11, 10, 9], [8, 7, 6, 5], [4, 3, 2, 1]]
+        correct = self.solver.check_if_solution(board_values)
+        self.assertEqual(correct, False)
+
+    def test_solve_puzzle_easy(self):
+        board_values = [[1, 2, 3, 4], [5, 7, 16, 8], [9, 6, 10, 11], [13, 14, 15, 12]]
+        self.game.set_heuristic("1")
+        self.board.fill_board(board_values)
+        solution_path, solution_steps = self.solver.solve_puzzle()
+        self.assertNotEqual(solution_path, None)
+        self.assertNotEqual(solution_steps, -1)
