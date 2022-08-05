@@ -2,11 +2,13 @@
 This repository contains the algorithm project for the course Data Structures Lab (Summer 2022), University of Helsinki. The project contains an artificial solver for the famous puzzle, the Fifteen Puzzle. The solver uses IDA* as the algorithm with two different heuristics: Manhattan-distance and Hamming-distance.
 
 ## Documentation
-[Project Specification Document](./documentation/project_specification.md)
+[Project Specification Document](./documentation/project_specification.md)<br>
+[Testing Document](./documentation/testing_document.md)<br>
 
 ### Weekly Reports
 [Week 1 Report](./documentation/weekly_reports/week1_report.md)<br>
-[Week 2 Report](./documentation/weekly_reports/week2_report.md)
+[Week 2 Report](./documentation/weekly_reports/week2_report.md)<br>
+[Week 3 Report](./documentation/weekly_reports/week3_report.md)<br>
 
 ### Test Coverages
 [Test Coverages](./documentation/test_coverages.md)
