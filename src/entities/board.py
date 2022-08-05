@@ -4,6 +4,7 @@ class Board:
     """
     def __init__(self):
         self.tile_values = []
+        self.initial_board = []
 
     def fill_board(self, new_tile_values):
         """Fills the board with the given tile values.
@@ -12,6 +13,7 @@ class Board:
             new_tile_values ([][]int): The tile values to fill the board.
         """
         self.tile_values = new_tile_values
+        self.initial_board = new_tile_values
 
     def get_board(self):
         """
@@ -19,9 +21,3 @@ class Board:
             [][]int: The current tile values of the board.
         """
         return self.tile_values
-
-    def get_blank_position(self):
-        for i in range(4):
-            for j in range(4):
-                if self.tile_values[i][j] == 16:
-                    return (i, j)
