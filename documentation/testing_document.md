@@ -1,0 +1,7 @@
+# Testing Document
+
+The coverage reports for testing can be seen [here](./test_coverages.md).<br>
+
+The project contains unittests that cover each class responsible for the game logic. These classes are Solver, Game, and Board. The unittests try to test both simple cases and corner cases of the methods in each of these classes. In the Game-class the most important unittests are the tests that check if the puzzle is solvable. As input I have used in these tests two boards that I know for a fact that are solvable and two boards that I know for a fact that are not solvable. The Game-class passes both of these cases. In the Game-class there are also smaller tests for methods that the class uses in the method that checks the solvability. This way I can be sure that also the helper functions work as they are intended to work.
+
+In the Solver-class the most important tests test the solving of the Puzzle and its helper functions. The solving of the puzzle requires many helper functions and therefore the correct functionality of these functions is extremely important. For example the testing of possible boards from the current board is done using three different cases: case where the blank tile is on the side, case where the blank tile is in a corner and case where the blank tile is in the middle of the board.
