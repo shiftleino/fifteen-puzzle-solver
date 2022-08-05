@@ -65,10 +65,10 @@ class TestSolver(unittest.TestCase):
         correct = self.solver.check_if_solution(board_values)
         self.assertEqual(correct, False)
 
-    def test_solve_puzzle_easy(self):
-        board_values = [[1, 2, 3, 4], [5, 7, 16, 8], [9, 6, 10, 11], [13, 14, 15, 12]]
+    def test_solve_puzzle_easy_manhattan(self):
+        board_values = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 16, 11], [13, 14, 15, 12]]
         self.game.set_heuristic("1")
         self.board.fill_board(board_values)
-        solution_path, solution_steps = self.solver.solve_puzzle()
+        self.solver = Solver(self.game)
+        solution_path = self.solver.solve_puzzle()
         self.assertNotEqual(solution_path, None)
-        self.assertNotEqual(solution_steps, -1)
