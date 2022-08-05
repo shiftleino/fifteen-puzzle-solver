@@ -52,13 +52,13 @@ class TestGame(unittest.TestCase):
 
     def test_check_correct(self):
         self.board.fill_board(self.correct)
-        correct = self.game.check_if_correct()
+        correct = self.game.check_if_board_correct()
         self.assertEqual(correct, True)
 
     def test_check_not_correct(self):
         board_values = [[16, 15, 14, 13], [12, 11, 10, 9], [8, 7, 6, 5], [4, 3, 2, 1]]
         self.board.fill_board(board_values)
-        correct = self.game.check_if_correct()
+        correct = self.game.check_if_board_correct()
         self.assertEqual(correct, False)
 
     def test_no_inversions(self):
