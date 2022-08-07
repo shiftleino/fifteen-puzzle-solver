@@ -54,6 +54,13 @@ class TestSolver(unittest.TestCase):
         distance = self.solver.get_manhattan_distance(board_values)
         self.assertEqual(distance, 32)
 
+    def test_improved_manhattan_distance(self):
+        board_values = [[4, 2, 7, 8], [1, 6, 3, 5], [11, 13, 15, 16], [10, 9, 12, 14]]
+        manhattan_distance = self.solver.get_manhattan_distance(board_values)
+        improved_manhattan_distance = self.solver.get_improved_manhattan_distance(board_values)
+        conflict_distance = improved_manhattan_distance - manhattan_distance
+        self.assertEqual(conflict_distance, 2*3)
+
     def test_check_correct(self):
         correct = self.solver.check_if_solution(self.correct)
         self.assertEqual(correct, True)
