@@ -168,7 +168,7 @@ class Solver:
             total_cost = moves + self.get_manhattan_distance(current_board)
         elif self.heuristic == "hamming":
             total_cost = moves + self.get_hamming_distance(current_board)
-        elif self.heuristic == "improved_manhattan":
+        else:
             total_cost = moves + self.get_improved_manhattan_distance(current_board)
 
         if total_cost > self.bound:
