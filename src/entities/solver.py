@@ -84,8 +84,21 @@ class Solver:
                 total_distance += sub_distance
         return total_distance
 
-    def get_hamming_distance(self):
-        pass
+    def get_hamming_distance(self, tile_values):
+        """Calculates the Hamming-distance between the given tile values and the correct solution.
+
+        Args:
+            tile_values ([][]int): The tile values of the current board.
+
+        Returns:
+            int: The Hamming-distance.
+        """
+        count = 0
+        for i in range(4):
+            for j in range(4):
+                if self.correct_solution[i][j] != tile_values[i][j]:
+                    count += 1
+        return count
 
     def search(self, moves):
         """Implements the main logic of the IDA* -algorithm including the depth-first-search.
@@ -94,7 +107,10 @@ class Solver:
             int: The minimum estimated cost found using the current bound.
         """
         current_board = self.solution_path[-1]
-        total_cost = moves + self.get_manhattan_distance(current_board)
+        if self.heuristic == "manhattan":
+            total_cost = moves + self.get_manhattan_distance(current_board)
+        elif self.heuristic == "hamming":
+            total_cost = moves + self.get_hamming_distance(current_board)
         
         # TODO: REMOVE THESE LOGS WHEN DONE WITH TESTING
         #print(f"\nTotal cost so far: {total_cost}")
