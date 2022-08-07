@@ -107,11 +107,8 @@ class Solver:
         for i in range(4):
             for j in range(4):
                 value = tile_values[i][j]
-                correct_row = value // 4
-                correct_col = value % 4 - 1
-                if value % 4 == 0:
-                    correct_row -= 1
-                    correct_col = 3
+                correct_row = (value - 1) // 4
+                correct_col = (value - 1) % 4
                 sub_distance = abs(correct_row - i) + abs(correct_col - j)
                 total_distance += sub_distance
         return total_distance
@@ -122,11 +119,8 @@ class Solver:
             row_conflicts = []
             for j in range(4):
                 value = tile_values[i][j]
-                correct_row = value // 4
-                correct_col = value % 4 - 1
-                if value % 4 == 0:
-                    correct_row -= 1
-                    correct_col = 3
+                correct_row = (value - 1) // 4
+                correct_col = (value - 1) % 4
                 sub_distance = abs(correct_row - i) + abs(correct_col - j)
                 total_distance += sub_distance
 
@@ -137,14 +131,12 @@ class Solver:
                 for j in range(i+1, len(row_conflicts)):
                     if row_conflicts[i] > row_conflicts[j]:
                         total_distance += 2
-        
+    
         for j in range(4):
             col_conflicts = []
             for i in range(4):
                 value = tile_values[i][j]
-                correct_col = value % 4 - 1
-                if value % 4 == 0:
-                    correct_col = 3
+                correct_col = (value - 1) % 4
                 if correct_col == j:
                     col_conflicts.append(value)
                 
