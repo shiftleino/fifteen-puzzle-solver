@@ -70,3 +70,11 @@ class TestSolver(unittest.TestCase):
         self.solver = Solver(self.game)
         solution_path = self.solver.solve_puzzle()
         self.assertNotEqual(solution_path, None)
+
+    def test_solve_puzzle_easy_hamming(self):
+        board_values = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 16, 11], [13, 14, 15, 12]]
+        self.game.set_heuristic("2")
+        self.game.set_board(board_values)
+        self.solver = Solver(self.game)
+        solution_path = self.solver.solve_puzzle()
+        self.assertNotEqual(solution_path, None)
