@@ -1,5 +1,4 @@
 import copy
-import time
 
 
 class Solver:
@@ -114,6 +113,17 @@ class Solver:
         return total_distance
 
     def get_improved_manhattan_distance(self, tile_values):
+        """Calculates the improved Manhattan-distance of the given board to the correct solution.
+        The function improves the normal Manhattan-distance by taking into account linear conflicts
+        in the board e.g., if two values are on the right row but in wrong order. In this case the
+        distance is two moves larger.
+
+        Args:
+            tile_values ([][]int): The tile values of the current board.
+
+        Returns:
+            int: The improved Manhattan-distance.
+        """
         total_distance = 0
         for i in range(4):
             row_conflicts = []
