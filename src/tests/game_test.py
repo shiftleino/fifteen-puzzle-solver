@@ -80,3 +80,10 @@ class TestGame(unittest.TestCase):
         board_values = [[1, 2, 3, 4], [12, 13, 14, 5], [11, 16, 15, 6], [10, 9, 8, 7]]
         distance = self.game.get_blank_distance(board_values)
         self.assertEqual(distance, 3)
+
+    def test_solve_puzzle(self):
+        board_values = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 16, 11], [13, 14, 15, 12]]
+        self.game.set_heuristic("1")
+        self.game.set_board(board_values)
+        solution_path, _ = self.game.solve_puzzle()
+        self.assertNotEqual(solution_path, None)
