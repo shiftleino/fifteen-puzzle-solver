@@ -1,12 +1,13 @@
 import random
-
+from time import time
+from entities.solver import Solver
 
 class Game:
     """The Game-class is responsible for the orchestration of the game, including
     setting the starting board and checking if the solution is correct.
     """
-    def __init__(self, board):
-        self.board = board
+    def __init__(self):
+        self.tile_values = []
         self.correct_solution = [[i + 4*j for i in range(1, 5)] for j in range(4)]
         self.heuristic = ""
         self.blank_position = (3, 3)
@@ -30,7 +31,7 @@ class Game:
         Returns:
             [][]int: The current tile values of the board.
         """
-        return self.board.get_board()
+        return self.tile_values
 
     def set_heuristic(self, heuristic):
         """Sets the heuristic the solver will use based on user input.
@@ -44,8 +45,19 @@ class Game:
         else:
             self.heuristic = "hamming"
 
+    def set_board(self, tile_values):
+        """Sets the current board to the given tile values.
+
+        Args:
+            tile_values ([][]int): New tile values for the board.
+        """
+        self.tile_values = tile_values
+
     def start_game(self):
         """Sets the tile values of the starting board using Random Number Generation.
+
+        Returns:
+            [][]int: The starting tile values.
         """
         solvable = False
         while not solvable:
@@ -62,7 +74,8 @@ class Game:
                 new_tile_values.append(row_values)
             solvable = self.check_if_solvable(new_tile_values)
 
-        self.board.fill_board(new_tile_values)
+        self.set_board(new_tile_values)
+        return new_tile_values
 
     def check_if_solvable(self, board_values):
         """Checks if the given board is solvable. Board is solvable if the
@@ -118,3 +131,17 @@ class Game:
             for j in range(3, -1, -1):
                 if board_values[i][j] == 16:
                     return (3 - i) + (3 - j)
+
+    def solve_puzzle(self):
+        """Solves the puzzle using Solver-class.
+
+        Returns:
+            [][][]int, float: The optimal steps the solver took to reach the solution
+                              and the time it took.
+        """
+        solver = Solver(self)
+        start_time = time()
+        solution_steps = solver.solve_puzzle()
+        end_time = time()
+        duration = end_time - start_time
+        return solution_steps, duration
