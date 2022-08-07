@@ -42,8 +42,10 @@ class Game:
         """
         if heuristic == "1":
             self.heuristic = "manhattan"
-        else:
+        elif heuristic == "2":
             self.heuristic = "hamming"
+        else:
+            self.heuristic = "improved_manhattan"
 
     def set_board(self, tile_values):
         """Sets the current board to the given tile values.

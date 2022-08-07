@@ -11,7 +11,7 @@ class ConsoleUI:
             string: User's choice for the heuristic: "1" or "2".
         """
         print("Fifteen Puzzle Solver\n")
-        choice = input("Choose which heuristic to use:\n1. Manhattan-distance\n2. Hamming-distance\n>>> ")
+        choice = input("Choose which heuristic to use:\n1. Manhattan-distance\n2. Hamming-distance\n3. Improved Manhattan-distance\n>>> ")
         return choice
 
     def print_end_menu(self):

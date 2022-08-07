@@ -75,6 +75,24 @@ class Solver:
             return self.get_manhattan_distance(tile_values)
         elif self.heuristic == "hamming":
             return self.get_hamming_distance(tile_values)
+        else:
+            return self.get_improved_manhattan_distance(tile_values)
+
+    def get_hamming_distance(self, tile_values):
+        """Calculates the Hamming-distance between the given tile values and the correct solution.
+
+        Args:
+            tile_values ([][]int): The tile values of the current board.
+
+        Returns:
+            int: The Hamming-distance.
+        """
+        count = 0
+        for i in range(4):
+            for j in range(4):
+                if self.correct_solution[i][j] != tile_values[i][j]:
+                    count += 1
+        return count
 
     def get_manhattan_distance(self, tile_values):
         """Calculates the Manhattan-distance of the given board to the correct solution.
@@ -98,21 +116,44 @@ class Solver:
                 total_distance += sub_distance
         return total_distance
 
-    def get_hamming_distance(self, tile_values):
-        """Calculates the Hamming-distance between the given tile values and the correct solution.
-
-        Args:
-            tile_values ([][]int): The tile values of the current board.
-
-        Returns:
-            int: The Hamming-distance.
-        """
-        count = 0
+    def get_improved_manhattan_distance(self, tile_values):
+        total_distance = 0
         for i in range(4):
+            row_conflicts = []
             for j in range(4):
-                if self.correct_solution[i][j] != tile_values[i][j]:
-                    count += 1
-        return count
+                value = tile_values[i][j]
+                correct_row = value // 4
+                correct_col = value % 4 - 1
+                if value % 4 == 0:
+                    correct_row -= 1
+                    correct_col = 3
+                sub_distance = abs(correct_row - i) + abs(correct_col - j)
+                total_distance += sub_distance
+
+                if correct_row == i:
+                    row_conflicts.append(value)
+
+            for i in range(len(row_conflicts)):
+                for j in range(i+1, len(row_conflicts)):
+                    if row_conflicts[i] > row_conflicts[j]:
+                        total_distance += 2
+        
+        for j in range(4):
+            col_conflicts = []
+            for i in range(4):
+                value = tile_values[i][j]
+                correct_col = value % 4 - 1
+                if value % 4 == 0:
+                    correct_col = 3
+                if correct_col == j:
+                    col_conflicts.append(value)
+                
+            for i in range(len(col_conflicts)):
+                for j in range(i+1, len(col_conflicts)):
+                    if col_conflicts[i] > col_conflicts[j]:
+                        total_distance += 2
+
+        return total_distance
 
     def search(self, moves):
         """Implements the main logic of the IDA* -algorithm including the depth-first-search.
@@ -125,12 +166,8 @@ class Solver:
             total_cost = moves + self.get_manhattan_distance(current_board)
         elif self.heuristic == "hamming":
             total_cost = moves + self.get_hamming_distance(current_board)
-        
-        # TODO: REMOVE THESE LOGS WHEN DONE WITH TESTING
-        #print(f"\nTotal cost so far: {total_cost}")
-        #print(f"Of which heuristic: {self.get_manhattan_distance(current_board)}")
-        #print(current_board)
-        #time.sleep(1)
+        elif self.heuristic == "improved_manhattan":
+            total_cost = moves + self.get_improved_manhattan_distance(current_board)
 
         if total_cost > self.bound:
             return total_cost
