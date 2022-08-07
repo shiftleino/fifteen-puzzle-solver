@@ -1,13 +1,11 @@
 import unittest
 from entities.solver import Solver
 from entities.game import Game
-from entities.board import Board
 
 class TestSolver(unittest.TestCase):
     def setUp(self):
         self.maxDiff = None
-        self.board = Board()
-        self.game = Game(self.board)
+        self.game = Game()
         self.game.start_game()
         self.solver = Solver(self.game)
         self.correct = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]
@@ -68,7 +66,7 @@ class TestSolver(unittest.TestCase):
     def test_solve_puzzle_easy_manhattan(self):
         board_values = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 16, 11], [13, 14, 15, 12]]
         self.game.set_heuristic("1")
-        self.board.fill_board(board_values)
+        self.game.set_board(board_values)
         self.solver = Solver(self.game)
         solution_path = self.solver.solve_puzzle()
         self.assertNotEqual(solution_path, None)

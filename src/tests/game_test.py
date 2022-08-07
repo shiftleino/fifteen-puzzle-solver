@@ -1,15 +1,13 @@
 import unittest
 from entities.game import Game
-from entities.board import Board
 
 class TestGame(unittest.TestCase):
     def setUp(self):
-        self.board = Board()
-        self.game = Game(self.board)
+        self.game = Game()
         self.correct = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]
 
     def test_get_board(self):
-        self.board.fill_board(self.correct)
+        self.game.set_board(self.correct)
         result = self.game.get_board()
         self.assertEqual(result, self.correct)
 
@@ -34,17 +32,17 @@ class TestGame(unittest.TestCase):
         self.assertEqual(self.game.heuristic, "hamming")
 
     def test_start_game_fills_board(self):
-        start_tile_values = self.board.get_board()
+        start_tile_values = self.game.get_board()
         self.assertEqual(start_tile_values, [])
         self.game.start_game()
-        end_tile_values = self.board.get_board()
+        end_tile_values = self.game.get_board()
         self.assertEqual(len(end_tile_values), 4)
         self.assertEqual(len(end_tile_values[0]), 4)
 
     def test_start_game_all_values(self):
         all_values = 16*[True]
         self.game.start_game()
-        board_values = self.board.get_board()
+        board_values = self.game.get_board()
         for row in board_values:
             for value in row:
                 all_values[value-1] = False
