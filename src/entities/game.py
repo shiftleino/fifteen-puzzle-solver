@@ -35,10 +35,11 @@ class Game:
 
     def set_heuristic(self, heuristic):
         """Sets the heuristic the solver will use based on user input.
-        "1" is for Manhattan-distance, "2" is for Hamming-distance.
+        "1" is for Manhattan-distance, "2" is for Hamming-distance, and
+        "3" is for improved Manhattan-distance.
 
         Args:
-            heuristic (string): The heuristic to use in the algorithm: "1" or "2".
+            heuristic (string): The heuristic to use in the algorithm: "1", "2", or "3".
         """
         if heuristic == "1":
             self.heuristic = "manhattan"
