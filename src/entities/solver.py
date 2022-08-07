@@ -100,7 +100,7 @@ class Solver:
         #print(f"\nTotal cost so far: {total_cost}")
         #print(f"Of which heuristic: {self.get_manhattan_distance(current_board)}")
         #print(current_board)
-        #time.sleep(3)
+        #time.sleep(1)
 
         if total_cost > self.bound:
             return total_cost
@@ -132,6 +132,9 @@ class Solver:
             if result == float("inf"):
                 return None
             self.bound = result
+
+            # TODO: remove this print after testing
+            print(f"Current bound: {self.bound}")
 
     def check_if_solution(self, tile_values):
         """Check if the given tile values match the solution values.
