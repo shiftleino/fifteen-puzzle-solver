@@ -12,7 +12,7 @@ class Solver:
         self.heuristic = self.game.get_heuristic()
         self.correct_solution = self.game.get_correct_solution()
         self.start_tile_values = self.game.get_board()
-        self.bound = self.get_manhattan_distance(self.start_tile_values)
+        self.bound = self.get_heuristic_value(self.start_tile_values)
         self.solution_path = [self.start_tile_values]
 
     def get_blank_position(self, tile_values):
@@ -61,6 +61,20 @@ class Solver:
             new_board[blank_row][blank_col] = tile_values[blank_row][blank_col + 1]
             next_boards.append(new_board)
         return next_boards
+    
+    def get_heuristic_value(self, tile_values):
+        """Calculates the heuristic value of the given board.
+
+        Args:
+            tile_values ([][]int): The current board.
+
+        Returns:
+            int: The heuristic value.
+        """
+        if self.heuristic == "manhattan":
+            return self.get_manhattan_distance(tile_values)
+        elif self.heuristic == "hamming":
+            return self.get_hamming_distance(tile_values)
 
     def get_manhattan_distance(self, tile_values):
         """Calculates the Manhattan-distance of the given board to the correct solution.
