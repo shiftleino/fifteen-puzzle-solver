@@ -9,6 +9,7 @@ This repository contains the algorithm project for the course Data Structures La
 [Week 1 Report](./documentation/weekly_reports/week1_report.md)<br>
 [Week 2 Report](./documentation/weekly_reports/week2_report.md)<br>
 [Week 3 Report](./documentation/weekly_reports/week3_report.md)<br>
+[Week 4 Report](./documentation/weekly_reports/week4_report.md)<br>
 
 ### Test Coverages
 [Test Coverages](./documentation/test_coverages.md)
