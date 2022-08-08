@@ -93,3 +93,51 @@ class TestSolver(unittest.TestCase):
         self.solver = Solver(self.game)
         solution_path = self.solver.solve_puzzle()
         self.assertNotEqual(solution_path, None)
+
+    def test_solve_puzzle_intermediate_manhattan(self):
+        board_values = [[1, 7, 2, 4], [5, 16, 3, 8], [9, 6, 10, 11], [13, 14, 15, 12]]
+        self.game.set_heuristic("1")
+        self.game.set_board(board_values)
+        self.solver = Solver(self.game)
+        solution_path = self.solver.solve_puzzle()
+        self.assertNotEqual(solution_path, None)
+
+    def test_solve_puzzle_intermediate_hamming(self):
+        board_values = [[1, 7, 2, 4], [5, 16, 3, 8], [9, 6, 10, 11], [13, 14, 15, 12]]
+        self.game.set_heuristic("2")
+        self.game.set_board(board_values)
+        self.solver = Solver(self.game)
+        solution_path = self.solver.solve_puzzle()
+        self.assertNotEqual(solution_path, None)
+
+    def test_solve_puzzle_intermediate_imporoved_manhattan(self):
+        board_values = [[1, 7, 2, 4], [5, 16, 3, 8], [9, 6, 10, 11], [13, 14, 15, 12]]
+        self.game.set_heuristic("3")
+        self.game.set_board(board_values)
+        self.solver = Solver(self.game)
+        solution_path = self.solver.solve_puzzle()
+        self.assertNotEqual(solution_path, None)
+
+    #def test_solve_puzzle_hard_manhattan(self):
+    #    board_values = [[5, 1, 3, 4], [2, 6, 8, 11], [9, 10, 16, 7], [13, 14, 12, 16]]
+    #    self.game.set_heuristic("1")
+    #    self.game.set_board(board_values)
+    #    self.solver = Solver(self.game)
+    #    solution_path = self.solver.solve_puzzle()
+    #    self.assertNotEqual(solution_path, None)
+
+    #def test_solve_puzzle_hard_hamming(self):
+    #    board_values = [[5, 1, 3, 4], [2, 6, 8, 11], [9, 10, 16, 7], [13, 14, 12, 16]]
+    #    self.game.set_heuristic("2")
+    #    self.game.set_board(board_values)
+    #    self.solver = Solver(self.game)
+    #    solution_path = self.solver.solve_puzzle()
+    #    self.assertNotEqual(solution_path, None)
+
+    #def test_solve_puzzle_hard_improved_manhattan(self):
+    #    board_values = [[5, 1, 3, 4], [2, 6, 8, 11], [9, 10, 16, 7], [13, 14, 12, 16]]
+    #    self.game.set_heuristic("3")
+    #    self.game.set_board(board_values)
+    #    self.solver = Solver(self.game)
+    #    solution_path = self.solver.solve_puzzle()
+    #    self.assertNotEqual(solution_path, None)
