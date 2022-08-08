@@ -60,7 +60,7 @@ class Solver:
             new_board[blank_row][blank_col] = tile_values[blank_row][blank_col + 1]
             next_boards.append(new_board)
         return next_boards
-    
+
     def get_heuristic_value(self, tile_values):
         """Calculates the heuristic value of the given board.
 
@@ -72,10 +72,9 @@ class Solver:
         """
         if self.heuristic == "manhattan":
             return self.get_manhattan_distance(tile_values)
-        elif self.heuristic == "hamming":
+        if self.heuristic == "hamming":
             return self.get_hamming_distance(tile_values)
-        else:
-            return self.get_improved_manhattan_distance(tile_values)
+        return self.get_improved_manhattan_distance(tile_values)
 
     def get_hamming_distance(self, tile_values):
         """Calculates the Hamming-distance between the given tile values and the correct solution.
