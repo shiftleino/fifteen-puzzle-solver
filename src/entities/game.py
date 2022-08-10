@@ -114,7 +114,7 @@ class Game:
         """
         count = 0
         flattened_values = [value for row in board_values for value in row]
-        for i in range(16):
+        for i in range(15):
             for j in range(i + 1, 16):
                 if flattened_values[i] > flattened_values[j]:
                     count += 1
