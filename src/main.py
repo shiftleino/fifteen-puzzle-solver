@@ -21,7 +21,7 @@ def main():
     restart_choice = ui.print_end_menu()
     while restart_choice == "s":
         heuristic = ui.print_start_menu()
-        while heuristic not in ("1", "2"):
+        while heuristic not in ("1", "2", "3"):
             print("Invalid choice. Restarting game...")
             start_tile_values = game.start_game()
             heuristic = ui.print_start_menu()
