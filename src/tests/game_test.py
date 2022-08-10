@@ -54,6 +54,9 @@ class TestGame(unittest.TestCase):
         board_values2 = [[1, 2, 3, 4], [12, 13, 14, 5], [11, 16, 15, 6], [10, 9, 8, 7]]
         solvable2 = self.game.check_if_solvable(board_values2)
         self.assertEqual(solvable2, True)
+        board_values3 = [[12, 10, 15, 2], [6, 13, 1, 8], [7, 16, 14, 4], [5, 9, 11, 3]]
+        solvable3 = self.game.check_if_solvable(board_values3)
+        self.assertEqual(solvable3, True)
 
     def test_check_not_solvable(self):
         board_values = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 15, 14, 16]]
