@@ -148,7 +148,7 @@ class Solver:
                 correct_col = (value - 1) % 4
                 if correct_col == j:
                     col_conflicts.append(value)
-                
+
             for i in range(len(col_conflicts)):
                 for j in range(i+1, len(col_conflicts)):
                     if col_conflicts[i] > col_conflicts[j]:
@@ -163,12 +163,7 @@ class Solver:
             int: The minimum estimated cost found using the current bound.
         """
         current_board = self.solution_path[-1]
-        if self.heuristic == "manhattan":
-            total_cost = moves + self.get_manhattan_distance(current_board)
-        elif self.heuristic == "hamming":
-            total_cost = moves + self.get_hamming_distance(current_board)
-        else:
-            total_cost = moves + self.get_improved_manhattan_distance(current_board)
+        total_cost = moves + self.get_heuristic_value(current_board)
 
         if total_cost > self.bound:
             return total_cost
