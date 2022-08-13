@@ -1,4 +1,5 @@
 import random
+import copy
 from time import time
 from entities.solver import Solver
 
@@ -56,7 +57,39 @@ class Game:
         """
         self.tile_values = tile_values
 
-    def start_game(self):
+    def move_blank(self, tile_values, direction):
+        """Changes the position of the blank tile in the board to the direction given as a parameter (if possible).
+
+        Args:
+            tile_values ([][]int): The current board.
+            direction ((int, int)): The values to add to the blank tile position (row, column).
+
+        Returns:
+            [][]int: The board after moving the blank (if possible).
+        """
+        new_blank_row = self.blank_position[0] + direction[0]
+        new_blank_col = self.blank_position[1] + direction[1]
+        if 0 <= new_blank_row <= 3 and 0 <= new_blank_col <= 3:
+            tile_values[new_blank_row][new_blank_col], tile_values[self.blank_position[0]][self.blank_position[1]] = tile_values[self.blank_position[0]][self.blank_position[1]], tile_values[new_blank_row][new_blank_col]
+            self.blank_position = (new_blank_row, new_blank_col)
+        return tile_values
+ 
+    def start_game_easy(self):
+        """Sets the tile values of the starting board using 10 moves from solved board.
+
+        Returns:
+            [][]int: The starting tile values.
+        """
+        new_tile_values = copy.deepcopy(self.correct_solution)
+        directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+        for _ in range(25):
+            next_direction = random.choice(directions)
+            new_tile_values = self.move_blank(new_tile_values, next_direction)
+
+        self.set_board(new_tile_values)
+        return new_tile_values
+
+    def start_game_hard(self):
         """Sets the tile values of the starting board using Random Number Generation.
 
         Returns:
@@ -144,6 +177,7 @@ class Game:
         """
         solver = Solver(self)
         start_time = time()
+        print("Solving...")
         solution_steps = solver.solve_puzzle()
         end_time = time()
         duration = end_time - start_time
