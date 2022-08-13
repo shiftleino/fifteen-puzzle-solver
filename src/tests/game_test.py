@@ -31,17 +31,49 @@ class TestGame(unittest.TestCase):
         self.game.set_heuristic(heuristic)
         self.assertEqual(self.game.heuristic, "hamming")
 
-    def test_start_game_fills_board(self):
+    def test_start_game_hard_fills_board(self):
         start_tile_values = self.game.get_board()
         self.assertEqual(start_tile_values, [])
-        self.game.start_game()
+        self.game.start_game_hard()
         end_tile_values = self.game.get_board()
         self.assertEqual(len(end_tile_values), 4)
         self.assertEqual(len(end_tile_values[0]), 4)
 
-    def test_start_game_all_values(self):
+    def test_start_game_hard_all_values(self):
         all_values = 16*[True]
-        self.game.start_game()
+        self.game.start_game_hard()
+        board_values = self.game.get_board()
+        for row in board_values:
+            for value in row:
+                all_values[value-1] = False
+        self.assertEqual(sum(all_values), 0)
+
+    def test_move_blank_up(self):
+        expected_board_values = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 16], [13, 14, 15, 12]]
+        new_board_values = self.game.move_blank(self.correct, (-1, 0))
+        self.assertEqual(new_board_values, expected_board_values)
+
+    def test_move_blank_left(self):
+        expected_board_values = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 16, 15]]
+        new_board_values = self.game.move_blank(self.correct, (0, -1))
+        self.assertEqual(new_board_values, expected_board_values)
+
+    def test_move_blank_illegal(self):
+        expected_board_values = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]
+        new_board_values = self.game.move_blank(self.correct, (0, 1))
+        self.assertEqual(new_board_values, expected_board_values)
+
+    def test_start_game_easy_fills_board(self):
+        start_tile_values = self.game.get_board()
+        self.assertEqual(start_tile_values, [])
+        self.game.start_game_easy()
+        end_tile_values = self.game.get_board()
+        self.assertEqual(len(end_tile_values), 4)
+        self.assertEqual(len(end_tile_values[0]), 4)
+
+    def test_start_game_easy_all_values(self):
+        all_values = 16*[True]
+        self.game.start_game_easy()
         board_values = self.game.get_board()
         for row in board_values:
             for value in row:
