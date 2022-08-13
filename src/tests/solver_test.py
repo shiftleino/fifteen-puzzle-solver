@@ -6,7 +6,7 @@ class TestSolver(unittest.TestCase):
     def setUp(self):
         self.maxDiff = None
         self.game = Game()
-        self.game.start_game()
+        self.game.start_game_hard()
         self.solver = Solver(self.game)
         self.correct = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]
 
@@ -54,12 +54,28 @@ class TestSolver(unittest.TestCase):
         distance = self.solver.get_manhattan_distance(board_values)
         self.assertEqual(distance, 32)
 
+    def test_hamming_distance(self):
+        board_values = [[1, 2, 3, 4], [12, 13, 14, 5], [11, 16, 15, 6], [10, 9, 8, 7]]
+        distance = self.solver.get_hamming_distance(board_values)
+        self.assertEqual(distance, 12)
+
+    def test_hamming_distance_correct(self):
+        distance = self.solver.get_hamming_distance(self.correct)
+        self.assertEqual(distance, 0)
+
     def test_improved_manhattan_distance(self):
         board_values = [[4, 2, 7, 8], [1, 6, 3, 5], [11, 13, 15, 16], [10, 9, 12, 14]]
         manhattan_distance = self.solver.get_manhattan_distance(board_values)
         improved_manhattan_distance = self.solver.get_improved_manhattan_distance(board_values)
         conflict_distance = improved_manhattan_distance - manhattan_distance
         self.assertEqual(conflict_distance, 2*3)
+
+    def test_get_heuristic_value(self):
+        self.game.set_heuristic("2")
+        solver = Solver(self.game)
+        board_values = [[1, 2, 3, 4], [12, 13, 14, 5], [11, 16, 15, 6], [10, 9, 8, 7]]
+        distance = solver.get_heuristic_value(board_values)
+        self.assertEqual(distance, 12)
 
     def test_check_correct(self):
         correct = self.solver.check_if_solution(self.correct)
