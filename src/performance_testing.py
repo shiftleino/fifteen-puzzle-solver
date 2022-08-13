@@ -1,0 +1,45 @@
+import timeit
+from entities.solver import Solver
+from entities.game import Game
+
+def set_up(heuristic, mode):
+    game = Game()
+    game.set_heuristic(heuristic)
+    if mode == "easy":
+        tile_values = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 16, 11], [13, 14, 15, 12]]
+    elif mode == "intermediate":
+        tile_values = [[16, 7, 10, 2], [1, 5, 3, 4], [9, 13, 15, 8], [14, 6, 12, 11]]
+    game.set_board(tile_values)
+    solver = Solver(game)
+    return solver
+
+def performance_test_easy():
+    print("Average durations:")
+    heuristics = [("1", "Manhattan"), ("2", "Hamming"), ("3", "Improved Manhattan")]
+    for num, heuristic in heuristics:
+        solver = set_up(num, "easy")
+        durations = timeit.repeat(str(solver.solve_puzzle()), number=100)
+        avg_duration = sum(durations) / 10
+        print(f"{heuristic}: {avg_duration:.10f}s")
+    print()
+
+def performance_test_intermediate():
+    print("Average durations:")
+    heuristics = [("1", "Manhattan"), ("2", "Hamming"), ("3", "Improved Manhattan")]
+    for num, heuristic in heuristics:
+        solver = set_up(num, "intermediate")
+        durations = timeit.repeat(str(solver.solve_puzzle()), number=100)
+        avg_duration = sum(durations) / 10
+        print(f"{heuristic}: {avg_duration:.10f}s")
+    print()
+
+def main():
+    print("Testing performance with an easy initial board...")
+    performance_test_easy()
+
+    print("Testing performance with an intermediate initial board...")
+    performance_test_intermediate()
+
+
+if __name__ == "__main__":
+    main()
