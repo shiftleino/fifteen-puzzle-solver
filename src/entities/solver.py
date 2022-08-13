@@ -196,9 +196,6 @@ class Solver:
                 return None
             self.bound = result
 
-            # TODO: remove this print after testing
-            print(f"Current bound: {self.bound}")
-
     def check_if_solution(self, tile_values):
         """Check if the given tile values match the solution values.
 
