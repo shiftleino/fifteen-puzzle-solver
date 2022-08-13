@@ -8,7 +8,7 @@ def set_up(heuristic, mode):
     if mode == "easy":
         tile_values = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 16, 11], [13, 14, 15, 12]]
     elif mode == "intermediate":
-        tile_values = [[16, 7, 10, 2], [1, 5, 3, 4], [9, 13, 15, 8], [14, 6, 12, 11]]
+        tile_values = [[5, 1, 3, 2], [9, 8, 7, 4], [13, 6, 10, 11], [14, 15, 16, 12]]
     game.set_board(tile_values)
     solver = Solver(game)
     return solver
