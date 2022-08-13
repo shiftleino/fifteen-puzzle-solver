@@ -22,6 +22,7 @@ In addition, the project contains one class for the text-based user interface, C
 - https://en.wikipedia.org/wiki/Parity_of_a_permutation
 - https://www.sfu.ca/~mdevos/notes/geom-sym/14_transpositions.pdf
 - https://sites.millersville.edu/bikenaga/abstract-algebra-1/permutations/permutations.pdf
+- https://michael.kim/blog/puzzle
 
 Some videos:
 - [Lecture on IDA*](https://www.youtube.com/watch?v=5LMXQ1NGHwU)
