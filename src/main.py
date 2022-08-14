@@ -1,5 +1,6 @@
 from ui.console import ConsoleUI
 from entities.game import Game
+from ui import gui
 
 
 def run_game(game, ui):
@@ -12,7 +13,8 @@ def run_game(game, ui):
 
     ui.print_start_position(start_tile_values)
     solution_steps, duration = game.solve_puzzle()
-    ui.print_solution_steps(solution_steps, duration)
+    print(f"\nA solution to the puzzle was found in {duration:.5f} seconds, showing the optimal steps...\n")
+    gui.show_solution(solution_steps)
     restart_choice = ui.print_end_menu()
     return restart_choice
 

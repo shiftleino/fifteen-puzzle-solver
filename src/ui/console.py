@@ -14,7 +14,7 @@ class ConsoleUI:
         print("Fifteen Puzzle Solver\n")
         heuristic = input("Choose which heuristic to use:\n1. Manhattan-distance\n2. Hamming-distance\n3. Improved Manhattan-distance\n>>> ")
         while heuristic not in ("1", "2", "3"):
-            print("Invalid choice. Try again.")
+            print("Invalid choice. Try again.\n")
             heuristic = input("Choose which heuristic to use:\n1. Manhattan-distance\n2. Hamming-distance\n3. Improved Manhattan-distance\n>>> ")
         
         mode = input("Choose which mode to use:\n1. Easy\n2. Hard (NOTE: the algorithm might not find a solution in reasonable time.)\n>>> ")
@@ -41,17 +41,6 @@ class ConsoleUI:
         """
         print("\nSolving the following starting placement:")
         self.print_board(tile_values)
-
-    def print_solution_steps(self, solution_steps, duration):
-        """Shows the optimal steps that the solver took to solve the puzzle.
-
-        Args:
-            solution_steps ([][][]int): List of the boards visited before the solution.
-            duration (float): The time it took to solve the puzzle.
-        """
-        print(f"\nA solution to the puzzle was found in {duration:.5f} seconds, the optimal steps are:\n")
-        for board in solution_steps:
-            self.print_board(board)
 
     def print_board(self, tile_values):
         """Outputs the current board to the console as a string.
