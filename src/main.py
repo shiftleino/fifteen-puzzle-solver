@@ -1,9 +1,9 @@
 from ui.console import ConsoleUI
+from ui.gui import GraphicalUI
 from entities.game import Game
-from ui import gui
 
 
-def run_game(game, ui):
+def run_game(game, ui, gui):
     heuristic, mode = ui.print_start_menu()
     game.set_heuristic(heuristic)
     if mode == "1":
@@ -21,10 +21,11 @@ def run_game(game, ui):
 def main():
     game = Game()
     ui = ConsoleUI()
+    gui = GraphicalUI()
     restart_choice = "s"
     
     while restart_choice == "s":
-        restart_choice = run_game(game, ui)
+        restart_choice = run_game(game, ui, gui)
 
 
 if __name__ == "__main__":
