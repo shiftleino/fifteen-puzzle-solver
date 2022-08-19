@@ -71,6 +71,8 @@ class GraphicalUI:
                             self.draw_grid(display)
                             self.draw_tile_values(display, solution_steps[i])
                             i += 1
+                        else:
+                            running = False
 
             pygame.display.update()
 
