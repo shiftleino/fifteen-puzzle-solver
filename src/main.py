@@ -13,7 +13,7 @@ def run_game(game, ui, gui):
 
     ui.print_start_position(start_tile_values)
     solution_steps, duration = game.solve_puzzle()
-    print(f"\nA solution to the puzzle was found in {duration:.5f} seconds, showing the optimal steps...\n")
+    print(f"\nA solution to the puzzle was found in {duration:.5f} seconds, showing the optimal steps (press space to show next)...\n")
     gui.show_solution(solution_steps)
     restart_choice = ui.print_end_menu()
     return restart_choice
