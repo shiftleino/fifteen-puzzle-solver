@@ -1,9 +1,5 @@
 # Testing Document
 
-
-## Test Coverages
-The coverage reports for testing can be seen [here](./test_coverages.md).<br>
-
 ## Unittests
 The project contains unittests that cover each class responsible for the game logic. These classes are Solver and Game. The unittests try to test both simple cases and corner cases of the methods in each of these classes. 
 
@@ -34,3 +30,17 @@ Improved Manhattan: 0.1068987012s
 ```
 
 The performance testing can be run using command `python src/performance_testing.py` from the root of the project. It takes around 2 minutes to run the script.
+
+## Test Coverages
+
+### Week 2
+![Week 2 Test Coverage](./images/test_coverage_w2.png)
+
+### Week 3
+![Week 3 Test Coverage](./images/test_coverage_w3.png)
+
+### Week 4
+![Week 4 Test Coverage](./images/test_coverage_w4.png)
+
+### Week 5
+![Week 5 Test Coverage](./images/test_coverage_w5.png)
