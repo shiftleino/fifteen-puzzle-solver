@@ -75,7 +75,7 @@ class Game:
         return tile_values
  
     def start_game_easy(self):
-        """Sets the tile values of the starting board using 10 moves from solved board.
+        """Sets the tile values of the starting board using 25 moves from solved board.
 
         Returns:
             [][]int: The starting tile values.

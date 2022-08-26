@@ -3,8 +3,8 @@ import copy
 
 class Solver:
     """The Solver-class is responsible for the solving of the Fifteen Puzzle
-    using the IDA*-algorithm with two different heuristics: Manhattan-distance
-    and Hamming-distance.
+    using the IDA*-algorithm with three different heuristics: Manhattan-distance,
+    Hamming-distance, and improved Manhattan-distance.
     """
     def __init__(self, game):
         self.game = game

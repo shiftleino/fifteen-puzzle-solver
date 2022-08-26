@@ -8,7 +8,7 @@ class ConsoleUI:
         choice for the heuristic and the game mode (easy or hard).
 
         Returns:
-            string: User's choice for the heuristic: "1" or "2".
+            string: User's choice for the heuristic: "1", "2", or "3".
             string: User's choice for the mode: "1" or "2".
         """
         print("Fifteen Puzzle Solver\n")
