@@ -13,6 +13,7 @@ This repository contains the algorithm project for the course Data Structures La
 [Week 3 Report](./documentation/weekly_reports/week3_report.md)<br>
 [Week 4 Report](./documentation/weekly_reports/week4_report.md)<br>
 [Week 5 Report](./documentation/weekly_reports/week5_report.md)<br>
+[Week 6 Report](./documentation/weekly_reports/week6_report.md)<br>
 
 ## Commands
 To run the program, use the following command when in root of the repository:
