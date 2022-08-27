@@ -31,6 +31,14 @@ Improved Manhattan: 0.1068987012s
 
 The performance testing can be run using command `python src/performance_testing.py` from the root of the project. It takes around 2 minutes to run the script.
 
+### Empirical Testing
+I have also tested empirically the performance of the heuristics by running the program on easy-mode ten times for each heuristic. Below you can see the number of times the algorithm could not solve the puzzle in under two minutes for each heuristic:<br>
+- Manhattan: 1
+- Hamming: 4
+- Improved Manhattan: 3
+
+Based on the empirical testing it seems that the most problematic initial board for every heuristic was a board where the blank tile was in the correct position. With other initial boards the algorithm could solve the "easy"-mode puzzle in under one second regardless the used heuristic.
+
 ## Test Coverages
 
 ### Week 2
@@ -44,3 +52,6 @@ The performance testing can be run using command `python src/performance_testing
 
 ### Week 5
 ![Week 5 Test Coverage](./images/test_coverage_w5.png)
+
+### Week 6
+![Week 6 Test Coverage](./images/test_coverage_w6.png)
