@@ -203,6 +203,4 @@ class Solver:
         Returns:
             boolean: If the given tile values are the same as the solution: True or False.
         """
-        if tile_values == self.correct_solution:
-            return True
-        return False
+        return tile_values == self.correct_solution
