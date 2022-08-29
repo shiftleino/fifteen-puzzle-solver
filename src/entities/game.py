@@ -5,7 +5,7 @@ from entities.solver import Solver
 
 class Game:
     """The Game-class is responsible for the orchestration of the game, including
-    setting the starting board and checking if the solution is correct.
+    setting the starting board and calling the Solver.
     """
     def __init__(self):
         self._tile_values = []
@@ -16,7 +16,7 @@ class Game:
     @property
     def tile_values(self):
         """
-        Returns:
+        Property:
             [][]int: The current tile values of the board.
         """
         return self._tile_values
@@ -28,7 +28,7 @@ class Game:
     @property
     def correct_solution(self):
         """
-        Returns:
+        Property:
             [][]int: The solution board to the puzzle. Read-only.
         """
         return self._correct_solution
@@ -36,9 +36,10 @@ class Game:
     @property
     def heuristic(self):
         """
-        Returns:
-            string: The current heuristic. When modifying use "1" for Manhattan-distance,
-            "2" for Hamming-distance, and "3" for improved Manhattan-distance.
+        Property:
+            string: The current heuristic ("manhattan", "hamming", or
+            "improved_manhattan"). When modifying use "1" for Manhattan-distance,
+             "2" for Hamming-distance, and "3" for improved Manhattan-distance.
         """
         return self._heuristic
 
@@ -115,8 +116,8 @@ class Game:
             Boolean: If the board is solvable: True or False.
         """
         perm_parity = blank_parity = 1
-        num_transpositions = self.get_number_inversions(board_values)
-        if num_transpositions % 2 == 0:
+        num_inversions = self.get_number_inversions(board_values)
+        if num_inversions % 2 == 0:
             perm_parity = 2
 
         blank_distance = self.get_blank_distance(board_values)
@@ -156,7 +157,7 @@ class Game:
             for j in range(3, -1, -1):
                 if board_values[i][j] == 16:
                     return (3 - i) + (3 - j)
-        return 0
+        raise Exception("Board contains no blank tile.")
 
     def solve_puzzle(self):
         """Solves the puzzle using Solver-class.
@@ -166,8 +167,8 @@ class Game:
                               and the time it took.
         """
         solver = Solver(self)
-        start_time = time()
         print("Solving...")
+        start_time = time()
         solution_steps = solver.solve_puzzle()
         end_time = time()
         duration = end_time - start_time

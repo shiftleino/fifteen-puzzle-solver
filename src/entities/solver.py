@@ -27,7 +27,7 @@ class Solver:
             for j in range(4):
                 if tile_values[i][j] == 16:
                     return (i, j)
-        return (3, 3)
+        raise Exception("Board contains no blank tile.")
 
     def get_next_boards(self, tile_values):
         """Finds the possible board placements within one move from the given tile values.
