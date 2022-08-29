@@ -6,43 +6,43 @@ class TestGame(unittest.TestCase):
         self.game = Game()
         self.correct = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]
 
-    def test_get_board(self):
-        self.game.set_board(self.correct)
-        result = self.game.get_board()
-        self.assertEqual(result, self.correct)
-
     def test_get_correct_solution(self):
-        result = self.game.get_correct_solution()
+        result = self.game.correct_solution
         self.assertEqual(result, self.correct)
-
-    def test_get_heuristic(self):
-        heuristic = "2"
-        self.game.heuristic = heuristic
-        result = self.game.get_heuristic()
-        self.assertEqual(result, heuristic)
 
     def test_set_heuristic_manhattan(self):
         heuristic = "1"
-        self.game.set_heuristic(heuristic)
+        self.game.heuristic = heuristic
         self.assertEqual(self.game.heuristic, "manhattan")
 
     def test_set_heuristic_hamming(self):
         heuristic = "2"
-        self.game.set_heuristic(heuristic)
+        self.game.heuristic = heuristic
         self.assertEqual(self.game.heuristic, "hamming")
 
+    def test_set_improved_manhattan(self):
+        heuristic = "3"
+        self.game.heuristic = heuristic
+        self.assertEqual(self.game.heuristic, "improved_manhattan")
+
+    def test_invalid_heuristic(self):
+        heuristic = "4"
+        def func():
+            self.game.heuristic = heuristic
+        self.assertRaises(Exception, func)
+
     def test_start_game_hard_fills_board(self):
-        start_tile_values = self.game.get_board()
+        start_tile_values = self.game.tile_values
         self.assertEqual(start_tile_values, [])
         self.game.start_game_hard()
-        end_tile_values = self.game.get_board()
+        end_tile_values = self.game.tile_values
         self.assertEqual(len(end_tile_values), 4)
         self.assertEqual(len(end_tile_values[0]), 4)
 
     def test_start_game_hard_all_values(self):
         all_values = 16*[True]
         self.game.start_game_hard()
-        board_values = self.game.get_board()
+        board_values = self.game.tile_values
         for row in board_values:
             for value in row:
                 all_values[value-1] = False
@@ -64,17 +64,17 @@ class TestGame(unittest.TestCase):
         self.assertEqual(new_board_values, expected_board_values)
 
     def test_start_game_easy_fills_board(self):
-        start_tile_values = self.game.get_board()
+        start_tile_values = self.game.tile_values
         self.assertEqual(start_tile_values, [])
         self.game.start_game_easy()
-        end_tile_values = self.game.get_board()
+        end_tile_values = self.game.tile_values
         self.assertEqual(len(end_tile_values), 4)
         self.assertEqual(len(end_tile_values[0]), 4)
 
     def test_start_game_easy_all_values(self):
         all_values = 16*[True]
         self.game.start_game_easy()
-        board_values = self.game.get_board()
+        board_values = self.game.tile_values
         for row in board_values:
             for value in row:
                 all_values[value-1] = False
@@ -118,7 +118,7 @@ class TestGame(unittest.TestCase):
 
     def test_solve_puzzle(self):
         board_values = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 16, 11], [13, 14, 15, 12]]
-        self.game.set_heuristic("1")
-        self.game.set_board(board_values)
+        self.game.heuristic = "1"
+        self.game.tile_values = board_values
         solution_path, _ = self.game.solve_puzzle()
         self.assertNotEqual(solution_path, None)

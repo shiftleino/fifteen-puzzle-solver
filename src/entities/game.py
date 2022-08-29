@@ -8,54 +8,50 @@ class Game:
     setting the starting board and checking if the solution is correct.
     """
     def __init__(self):
-        self.tile_values = []
-        self.correct_solution = [[i + 4*j for i in range(1, 5)] for j in range(4)]
-        self.heuristic = ""
+        self._tile_values = []
+        self._correct_solution = [[i + 4*j for i in range(1, 5)] for j in range(4)]
+        self._heuristic = ""
         self._blank_position = (3, 3)
 
-    def get_heuristic(self):
-        """
-        Returns:
-            string: The current heuristic.
-        """
-        return self.heuristic
-
-    def get_correct_solution(self):
-        """
-        Returns:
-            [][]int: The solution board to the puzzle.
-        """
-        return self.correct_solution
-
-    def get_board(self):
+    @property
+    def tile_values(self):
         """
         Returns:
             [][]int: The current tile values of the board.
         """
-        return self.tile_values
+        return self._tile_values
 
-    def set_heuristic(self, heuristic):
-        """Sets the heuristic the solver will use based on user input.
-        "1" is for Manhattan-distance, "2" is for Hamming-distance, and
-        "3" is for improved Manhattan-distance.
+    @tile_values.setter
+    def tile_values(self, new_tile_values):
+        self._tile_values = new_tile_values
 
-        Args:
-            heuristic (string): The heuristic to use in the algorithm: "1", "2", or "3".
+    @property
+    def correct_solution(self):
         """
-        if heuristic == "1":
-            self.heuristic = "manhattan"
-        elif heuristic == "2":
-            self.heuristic = "hamming"
+        Returns:
+            [][]int: The solution board to the puzzle. Read-only.
+        """
+        return self._correct_solution
+
+    @property
+    def heuristic(self):
+        """
+        Returns:
+            string: The current heuristic. When modifying use "1" for Manhattan-distance,
+            "2" for Hamming-distance, and "3" for improved Manhattan-distance.
+        """
+        return self._heuristic
+
+    @heuristic.setter
+    def heuristic(self, new_heuristic):
+        if new_heuristic == "1":
+            self._heuristic = "manhattan"
+        elif new_heuristic == "2":
+            self._heuristic = "hamming"
+        elif new_heuristic == "3":
+            self._heuristic = "improved_manhattan"
         else:
-            self.heuristic = "improved_manhattan"
-
-    def set_board(self, tile_values):
-        """Sets the current board to the given tile values.
-
-        Args:
-            tile_values ([][]int): New tile values for the board.
-        """
-        self.tile_values = tile_values
+            raise Exception("Unkown option for heuristic.")
 
     def move_blank(self, tile_values, direction):
         """Changes the position of the blank tile in the board to the direction
@@ -77,9 +73,6 @@ class Game:
 
     def start_game_easy(self):
         """Sets the tile values of the starting board using 25 moves from solved board.
-
-        Returns:
-            [][]int: The starting tile values.
         """
         new_tile_values = copy.deepcopy(self.correct_solution)
         directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
@@ -87,14 +80,10 @@ class Game:
             next_direction = random.choice(directions)
             new_tile_values = self.move_blank(new_tile_values, next_direction)
 
-        self.set_board(new_tile_values)
-        return new_tile_values
+        self.tile_values = new_tile_values
 
     def start_game_hard(self):
         """Sets the tile values of the starting board using Random Number Generation.
-
-        Returns:
-            [][]int: The starting tile values.
         """
         solvable = False
         while not solvable:
@@ -111,8 +100,7 @@ class Game:
                 new_tile_values.append(row_values)
             solvable = self.check_if_solvable(new_tile_values)
 
-        self.set_board(new_tile_values)
-        return new_tile_values
+        self.tile_values = new_tile_values
 
     def check_if_solvable(self, board_values):
         """Checks if the given board is solvable. Board is solvable if the

@@ -8,9 +8,9 @@ class Solver:
     """
     def __init__(self, game):
         self._game = game
-        self._heuristic = self._game.get_heuristic()
-        self._correct_solution = self._game.get_correct_solution()
-        self._start_tile_values = self._game.get_board()
+        self._heuristic = self._game.heuristic
+        self._correct_solution = self._game.correct_solution
+        self._start_tile_values = self._game.tile_values
         self._bound = self.get_heuristic_value(self._start_tile_values)
         self._solution_path = [self._start_tile_values]
 
