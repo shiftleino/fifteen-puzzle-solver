@@ -3,6 +3,23 @@ class ConsoleUI:
     the program.
     """
 
+    def run_game(self, game, gui):
+        restart_choice = "s"
+    
+        while restart_choice == "s":
+            heuristic, mode = self.print_start_menu()
+            game.set_heuristic(heuristic)
+            if mode == "1":
+                start_tile_values = game.start_game_easy()
+            else:
+                start_tile_values = game.start_game_hard()
+
+            self.print_start_position(start_tile_values)
+            solution_steps, duration = game.solve_puzzle()
+            print(f"\nA solution to the puzzle was found in {duration:.5f} seconds, showing the optimal steps (press space to show next)...\n")
+            gui.show_solution(solution_steps)
+            restart_choice = self.print_end_menu()
+
     def print_start_menu(self):
         """Creates the start menu of the program and asks user's 
         choice for the heuristic and the game mode (easy or hard).

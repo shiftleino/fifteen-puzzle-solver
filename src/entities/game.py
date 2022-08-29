@@ -58,7 +58,8 @@ class Game:
         self.tile_values = tile_values
 
     def move_blank(self, tile_values, direction):
-        """Changes the position of the blank tile in the board to the direction given as a parameter (if possible).
+        """Changes the position of the blank tile in the board to the direction
+        given as a parameter (if possible).
 
         Args:
             tile_values ([][]int): The current board.
@@ -73,7 +74,7 @@ class Game:
             tile_values[new_blank_row][new_blank_col], tile_values[self.blank_position[0]][self.blank_position[1]] = tile_values[self.blank_position[0]][self.blank_position[1]], tile_values[new_blank_row][new_blank_col]
             self.blank_position = (new_blank_row, new_blank_col)
         return tile_values
- 
+
     def start_game_easy(self):
         """Sets the tile values of the starting board using 25 moves from solved board.
 
@@ -167,6 +168,7 @@ class Game:
             for j in range(3, -1, -1):
                 if board_values[i][j] == 16:
                     return (3 - i) + (3 - j)
+        return 0
 
     def solve_puzzle(self):
         """Solves the puzzle using Solver-class.

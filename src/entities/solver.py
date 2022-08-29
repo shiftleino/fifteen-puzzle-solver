@@ -27,6 +27,7 @@ class Solver:
             for j in range(4):
                 if tile_values[i][j] == 16:
                     return (i, j)
+        return (3, 3)
 
     def get_next_boards(self, tile_values):
         """Finds the possible board placements within one move from the given tile values.
@@ -136,11 +137,11 @@ class Solver:
                 if correct_row == i:
                     row_conflicts.append(value)
 
-            for i in range(len(row_conflicts)):
+            for i, first_value in enumerate(row_conflicts):
                 for j in range(i+1, len(row_conflicts)):
-                    if row_conflicts[i] > row_conflicts[j]:
+                    if first_value > row_conflicts[j]:
                         total_distance += 2
-    
+
         for j in range(4):
             col_conflicts = []
             for i in range(4):
@@ -149,9 +150,9 @@ class Solver:
                 if correct_col == j:
                     col_conflicts.append(value)
 
-            for i in range(len(col_conflicts)):
+            for i, first_value in enumerate(col_conflicts):
                 for j in range(i+1, len(col_conflicts)):
-                    if col_conflicts[i] > col_conflicts[j]:
+                    if first_value > col_conflicts[j]:
                         total_distance += 2
 
         return total_distance
