@@ -7,12 +7,12 @@ class Solver:
     Hamming-distance, and improved Manhattan-distance.
     """
     def __init__(self, game):
-        self.game = game
-        self.heuristic = self.game.get_heuristic()
-        self.correct_solution = self.game.get_correct_solution()
-        self.start_tile_values = self.game.get_board()
-        self.bound = self.get_heuristic_value(self.start_tile_values)
-        self.solution_path = [self.start_tile_values]
+        self._game = game
+        self._heuristic = self._game.get_heuristic()
+        self._correct_solution = self._game.get_correct_solution()
+        self._start_tile_values = self._game.get_board()
+        self._bound = self.get_heuristic_value(self._start_tile_values)
+        self._solution_path = [self._start_tile_values]
 
     def get_blank_position(self, tile_values):
         """Finds the position of the blank tile.
@@ -71,9 +71,9 @@ class Solver:
         Returns:
             int: The heuristic value.
         """
-        if self.heuristic == "manhattan":
+        if self._heuristic == "manhattan":
             return self.get_manhattan_distance(tile_values)
-        if self.heuristic == "hamming":
+        if self._heuristic == "hamming":
             return self.get_hamming_distance(tile_values)
         return self.get_improved_manhattan_distance(tile_values)
 
@@ -89,7 +89,7 @@ class Solver:
         count = 0
         for i in range(4):
             for j in range(4):
-                if self.correct_solution[i][j] != tile_values[i][j]:
+                if self._correct_solution[i][j] != tile_values[i][j]:
                     count += 1
         return count
 
@@ -163,23 +163,23 @@ class Solver:
         Returns:
             int: The minimum estimated cost found using the current bound.
         """
-        current_board = self.solution_path[-1]
+        current_board = self._solution_path[-1]
         total_cost = moves + self.get_heuristic_value(current_board)
 
-        if total_cost > self.bound:
+        if total_cost > self._bound:
             return total_cost
         if self.check_if_solution(current_board):
             return 0
         minimum_cost = float("inf")
         for next_board in self.get_next_boards(current_board):
-            if next_board not in self.solution_path:
-                self.solution_path.append(next_board)
+            if next_board not in self._solution_path:
+                self._solution_path.append(next_board)
                 result = self.search(moves + 1)
                 if result == 0:
                     return 0
                 if result < minimum_cost:
                     minimum_cost = result
-                self.solution_path.pop()
+                self._solution_path.pop()
         return minimum_cost
 
     def solve_puzzle(self):
@@ -192,10 +192,10 @@ class Solver:
         while True:
             result = self.search(moves=0)
             if result == 0:
-                return self.solution_path
+                return self._solution_path
             if result == float("inf"):
                 return None
-            self.bound = result
+            self._bound = result
 
     def check_if_solution(self, tile_values):
         """Check if the given tile values match the solution values.
@@ -203,4 +203,4 @@ class Solver:
         Returns:
             boolean: If the given tile values are the same as the solution: True or False.
         """
-        return tile_values == self.correct_solution
+        return tile_values == self._correct_solution

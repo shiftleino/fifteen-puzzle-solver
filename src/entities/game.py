@@ -11,7 +11,7 @@ class Game:
         self.tile_values = []
         self.correct_solution = [[i + 4*j for i in range(1, 5)] for j in range(4)]
         self.heuristic = ""
-        self.blank_position = (3, 3)
+        self._blank_position = (3, 3)
 
     def get_heuristic(self):
         """
@@ -68,11 +68,11 @@ class Game:
         Returns:
             [][]int: The board after moving the blank (if possible).
         """
-        new_blank_row = self.blank_position[0] + direction[0]
-        new_blank_col = self.blank_position[1] + direction[1]
+        new_blank_row = self._blank_position[0] + direction[0]
+        new_blank_col = self._blank_position[1] + direction[1]
         if 0 <= new_blank_row <= 3 and 0 <= new_blank_col <= 3:
-            tile_values[new_blank_row][new_blank_col], tile_values[self.blank_position[0]][self.blank_position[1]] = tile_values[self.blank_position[0]][self.blank_position[1]], tile_values[new_blank_row][new_blank_col]
-            self.blank_position = (new_blank_row, new_blank_col)
+            tile_values[new_blank_row][new_blank_col], tile_values[self._blank_position[0]][self._blank_position[1]] = tile_values[self._blank_position[0]][self._blank_position[1]], tile_values[new_blank_row][new_blank_col]
+            self._blank_position = (new_blank_row, new_blank_col)
         return tile_values
 
     def start_game_easy(self):
