@@ -41,6 +41,9 @@ Based on the empirical testing it seems that the most problematic initial board 
 
 ## Test Coverages
 
+## Final
+![Final Test Coverage](./images/test_coverage_final.png)
+
 ### Week 2
 ![Week 2 Test Coverage](./images/test_coverage_w2.png)
 
