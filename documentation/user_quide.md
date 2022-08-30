@@ -26,6 +26,11 @@ To get a test coverage report, run the following command after getting the test 
 coverage html
 ```
 
+To run the performance tests, run the following command when in root of the repository:
+```console
+python src/performance_testing.py
+```
+
 ## Walkthrough
 In the first menu choose which heuristic to use in the solver by typing 1, 2 or 3:
 ```console
