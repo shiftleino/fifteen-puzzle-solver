@@ -1,4 +1,4 @@
-# Tiralabra - University of Helsinki
+# Fifteen Puzzle Solver
 This repository contains the algorithm project for the course Data Structures Lab (Summer 2022), University of Helsinki. The project contains an artificial solver for the famous puzzle, the Fifteen Puzzle. The solver uses IDA* as the algorithm with different heuristics.
 
 ## Documentation
